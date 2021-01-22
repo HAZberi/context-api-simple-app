@@ -1,17 +1,22 @@
 import React from "react";
 import LanguageContext from "../contexts/LanguageContext";
+import ColorContext from "../contexts/ColorContext";
 
 const Button = () => {
-    //Method One
-    //const value = useContext(LanguageContext);
-    //const buttonText = value === 'english' ? "Submit" : "إرسال"
+  //Method One
+  //const value = useContext(LanguageContext);
+  //const buttonText = value === 'english' ? "Submit" : "إرسال"
   return (
-    <button className="ui button primary">
-        {/* Method One {buttonText} */}
-        <LanguageContext.Consumer>
-            {value => value === 'english' ? "Submit" : "إرسال"}
-        </LanguageContext.Consumer>
-    </button>
+    <ColorContext.Consumer>
+      {(color) => (
+        <button className={`ui button ${color}`}>
+          {/* Method One {buttonText} */}
+          <LanguageContext.Consumer>
+            {(value) => (value === "english" ? "Submit" : "إرسال")}
+          </LanguageContext.Consumer>
+        </button>
+      )}
+    </ColorContext.Consumer>
   );
 };
 
