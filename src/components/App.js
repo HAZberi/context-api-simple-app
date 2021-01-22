@@ -4,9 +4,11 @@ import LanguageContext from "../contexts/LanguageContext";
 
 const App = () => {
   const [language, setLanguage] = useState("english");
+  const [color, setColor] = useState("primary");
 
-  const onLanguageChange = (language) => {
+  const onLanguageChange = (language, color) => {
     setLanguage(language);
+    setColor(color);
   };
 
   return (
@@ -17,12 +19,14 @@ const App = () => {
       <div className="content" style={{ marginBottom: "50px" }}>
         <i
           className="canada flag"
-          onClick={() => onLanguageChange("english")}
+          onClick={() => onLanguageChange("english", "primary")}
         />
-        <i className="sa flag" onClick={() => onLanguageChange("arabic")} />
+        <i className="sa flag" onClick={() => onLanguageChange("arabic", "red")} />
       </div>
-      <LanguageContext.Provider value={language}>
-        <UserCreate />
+      <LanguageContext.Provider value={color}>
+        <LanguageContext.Provider value={language}>
+          <UserCreate />
+        </LanguageContext.Provider>
       </LanguageContext.Provider>
     </div>
   );
